@@ -38,7 +38,7 @@
     },
 
     watch: {
-      movie(newMovie, oldMovie) {
+      movie(newMovie) {
         this.player.source(newMovie.trailer);
       }
     },
