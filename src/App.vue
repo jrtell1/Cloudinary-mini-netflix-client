@@ -12,7 +12,12 @@
             <div class="navbar-item">
               <div class="field is-grouped">
                 <p class="control">
-                  <a class="button is-dark" @click="showModal = true">Upload</a>
+                  <a class="button is-dark" @click="showModal = true">
+                    <span class="icon">
+                      <i class="fas fa-cloud-upload-alt"></i>
+                    </span>
+                    <span>Upload</span>
+                  </a>
                 </p>
                 <p class="control">
                   <a class="button is-dark">
@@ -21,12 +26,10 @@
                       url="https://cloudinary.gitbooks.io/build-a-mini-netflix-clone-with-vue/content"
                       inline-template
                     >
-                      <div>
-                        <network network="twitter">
-                          <i class="fab fa-twitter"></i>
-                          Share
-                        </network>
-                      </div>
+                      <network network="twitter">
+                        <i class="fab fa-twitter"></i>
+                        Share
+                      </network>
                     </social-sharing>
                   </a>
                 </p>
