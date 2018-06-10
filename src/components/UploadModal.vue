@@ -53,10 +53,10 @@
 
     methods: {
       startUpload(type) {
+        // eslint-disable-next-line
         cloudinary.openUploadWidget(
           { cloud_name: 'jrtell', upload_preset: 'v63gpw1l' },
           (error, result) => {
-            console.log(error, result[0]);
             type === 'banner'
               ? (this.banner = result[0].public_id)
               : (this.trailer = result[0].public_id);
