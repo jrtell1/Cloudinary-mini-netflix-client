@@ -53,6 +53,7 @@
     <upload-modal
       :showModal="showModal"
       @handle-upload="uploadToServer"
+      @close="showModal = false"
     ></upload-modal>
   </div>
 </template>

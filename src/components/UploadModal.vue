@@ -1,5 +1,5 @@
 <template>
-  <sweet-modal modal-theme="dark" overlay-theme="dark" ref="modal">
+  <sweet-modal modal-theme="dark" overlay-theme="dark" ref="modal" v-on="$listeners">
     <form @submit.prevent="handleUpload()" class="has-text-left">
       <div class="field">
         <label class="label has-text-white">Name</label>
