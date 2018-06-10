@@ -109,8 +109,8 @@
        * @param data
        */
       uploadToServer(data) {
-        axios.post(this.url, data).then(res => {
-          this.movies = [...this.movies, res.data];
+        axios.post(this.url, data).then(response => {
+          this.movies = [...this.movies, response.data];
           this.showModal = false;
         })
       }
