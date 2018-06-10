@@ -21,6 +21,12 @@
     },
 
     methods: {
+      /**
+       * Generates a Cloudinary url for the given banner.
+       *
+       * @param {String} bannerName
+       * @returns {*}
+       */
       bannerUrl(bannerName) {
         return this.cloudinaryInstance.url('mini-netflix/thumbnails/' + bannerName);
       }

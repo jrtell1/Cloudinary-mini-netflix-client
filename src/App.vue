@@ -94,10 +94,20 @@
     },
 
     methods: {
+      /**
+       * Sets new movie for the video player.
+       *
+       * @param {Object} movie
+       */
       updatePlayer(movie) {
         this.movie = movie;
       },
 
+      /**
+       * Uploads new movie to server.
+       *
+       * @param data
+       */
       uploadToServer(data) {
         axios.post(this.url, data).then(res => {
           this.movies = [...this.movies, res.data];

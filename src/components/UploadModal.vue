@@ -10,7 +10,7 @@
       <div class="field">
         <label class="label has-text-white">Upload Banner</label>
         <button class="button" @click="startUpload('banner')">Upload</button>
-        <span class="has-text-white">{{banner}}</span>
+        <span class="has-text-white">{{ banner }}</span>
       </div>
       <div class="field">
         <label class="label has-text-white">Upload Video</label>
@@ -52,6 +52,12 @@
     },
 
     methods: {
+      /**
+       * Uploads resource to Cloudinary, acceptable types are
+       * 'banner' and 'trailer'.
+       *
+       * @param {String} type
+       */
       startUpload(type) {
         // eslint-disable-next-line
         cloudinary.openUploadWidget(
@@ -64,6 +70,10 @@
         );
       },
 
+      /**
+       * Emits 'handle-upload' event, but only when all resources
+       * has been uploaded and set.
+       */
       handleUpload() {
         const data = {
           title: this.title,
