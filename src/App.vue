@@ -23,6 +23,7 @@
                     >
                       <div>
                         <network network="twitter">
+                          <i class="fab fa-twitter"></i>
                           Share
                         </network>
                       </div>
