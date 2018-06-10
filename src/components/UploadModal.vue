@@ -7,16 +7,19 @@
           <input class="input" type="text" placeholder="Text input" v-model="title">
         </div>
       </div>
+
       <div class="field">
         <label class="label has-text-white">Upload Banner</label>
         <button class="button" @click="startUpload('banner')">Upload</button>
         <span class="has-text-white">{{ banner }}</span>
       </div>
+
       <div class="field">
         <label class="label has-text-white">Upload Video</label>
         <button class="button" @click="startUpload('trailer')">Upload</button>
         <span class="has-text-white">{{ trailer }}</span>
       </div>
+
       <button class="button is-danger">Submit</button>
     </form>
   </sweet-modal>
@@ -40,8 +43,8 @@
     data() {
       return {
         title: '',
-        banner: '',
-        trailer: '',
+        banner: null,
+        trailer: null,
       }
     },
 
