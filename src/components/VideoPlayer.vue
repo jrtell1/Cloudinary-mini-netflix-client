@@ -55,12 +55,22 @@
         }
       });
 
-      this.player.volume(0.2);
+      this.player.volume(localStorage.getItem('playerVolume') || 0.4);
+      this.player.on('volumechange', this.onVolumeChanged);
       this.player.source(this.movieTrailer);
 
       document.hidden && this.player.mute();
       window.onfocus = () => this.player.unmute();
       window.onblur = () => this.player.mute();
+    },
+
+    methods: {
+      /**
+       * Triggers when volume is changed in Video Player.
+       */
+      onVolumeChanged() {
+        localStorage.setItem('playerVolume', this.player.volume());
+      }
     }
   }
 </script>
