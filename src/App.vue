@@ -8,7 +8,11 @@
           </a>
           <div class="navbar-menu">
             <div class="navbar-end">
-              <!-- Upload button here -->
+              <div class="navbar-menu">
+                <div class="navbar-end">
+                  <a class="button navbar-item" @click="showModal = true">Upload</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -19,25 +23,44 @@
       :cloudinary-instance="cloudinaryInstance"
       :movie="movie"
     ></video-player>
+
+    <div class="container">
+      <h2 class="is-size-3">Movies</h2>
+      <video-list
+        :cloudinary-instance="cloudinaryInstance"
+        :movies="movies"
+        @choose-movie="updatePlayer"
+      ></video-list>
+    </div>
+
+    <upload-modal
+      :showModal="showModal"
+      @handle-upload="uploadToServer"
+    ></upload-modal>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
-  import VideoPlayer from './components/VideoPlayer.vue'
+  import VideoPlayer from './components/VideoPlayer'
+  import VideoList from './components/VideoList'
+  import UploadModal from './components/UploadModal'
 
   export default {
     name: 'app',
 
     components: {
-      VideoPlayer
+      VideoPlayer,
+      VideoList,
+      UploadModal
     },
 
     data() {
       return {
         movie: {},
         movies: [],
-        url: '<webtask-url>/movies'
+        url: 'https://wt-3ab4f5008e0b86a1e53e234e9d9ee5aa-0.sandbox.auth0-extend.com/server/movies',
+        showModal: false
       }
     },
 
@@ -51,6 +74,19 @@
         this.movies = response.data;
       });
     },
+
+    methods: {
+      updatePlayer(movie) {
+        this.movie = movie;
+      },
+
+      uploadToServer(data) {
+        axios.post(this.url, data).then(res => {
+          this.movies = [...this.movies, res.data];
+          this.showModal = false;
+        })
+      }
+    }
   }
 </script>
 
