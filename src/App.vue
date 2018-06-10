@@ -6,23 +6,29 @@
           <a class="navbar-item" href="/">
             <img src="https://cloudinary-res.cloudinary.com/image/upload/v1521663307/MiniFlix-Logo_620x180.png" alt="Netflix" width="112" height="28">
           </a>
-          <a class="button navbar-item">
-            <social-sharing
-              title="Build a Mini Netflix from scratch"
-              url="https://cloudinary.gitbooks.io/build-a-mini-netflix-clone-with-vue/content" inline-template>
-              <div>
-                <network network="twitter">
-                  Share
-                </network>
-              </div>
-            </social-sharing>
-          </a>
-          <div class="navbar-menu">
-            <div class="navbar-end">
-              <div class="navbar-menu">
-                <div class="navbar-end">
-                  <a class="button navbar-item" @click="showModal = true">Upload</a>
-                </div>
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <a class="button is-dark" @click="showModal = true">Upload</a>
+                </p>
+                <p class="control">
+                  <a class="button is-dark">
+                    <social-sharing
+                      title="Build a Mini Netflix from scratch"
+                      url="https://cloudinary.gitbooks.io/build-a-mini-netflix-clone-with-vue/content"
+                      inline-template
+                    >
+                      <div>
+                        <network network="twitter">
+                          Share
+                        </network>
+                      </div>
+                    </social-sharing>
+                  </a>
+                </p>
               </div>
             </div>
           </div>
