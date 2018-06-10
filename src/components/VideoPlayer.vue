@@ -8,7 +8,7 @@
       class="cld-video-player player-bg-video">
     </video>
     <div class="player-content">
-      <h1 class="is-size-1  has-text-weight-bold">{{ movie.title || 'Black Panther' }}</h1>
+      <h1 class="is-size-1 has-text-weight-bold">{{ movieTitle }}</h1>
     </div>
   </div>
 </template>
@@ -24,6 +24,16 @@
       movie: {
         type: Object,
         required: true
+      }
+    },
+
+    computed: {
+      movieTitle() {
+        return this.movie.title || 'Black Panther';
+      },
+
+      movieTrailer() {
+        return this.movie.trailer || 'mini-netflix/trailers/Marvel_Studios_Black_Panther_-_Official_Trailer_nmrtr7';
       }
     },
 
@@ -45,7 +55,8 @@
         }
       });
 
-      this.player.source(this.movie.trailer || 'mini-netflix/trailers/Marvel_Studios_Black_Panther_-_Official_Trailer_nmrtr7');
+      this.player.volume(0.2);
+      this.player.source(this.movieTrailer);
 
       document.hidden && this.player.mute();
       window.onfocus = () => this.player.unmute();
