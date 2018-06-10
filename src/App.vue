@@ -51,7 +51,7 @@
     </div>
 
     <upload-modal
-      :showModal="showModal"
+      :show-modal="showModal"
       @handle-upload="uploadToServer"
       @close="showModal = false"
     ></upload-modal>
