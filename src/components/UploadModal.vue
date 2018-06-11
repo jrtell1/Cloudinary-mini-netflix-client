@@ -28,6 +28,8 @@
   import { SweetModal, SweetModalTab } from 'sweet-modal-vue';
 
   export default {
+    name: 'uploadmodal',
+
     components: {
       SweetModal,
       SweetModalTab

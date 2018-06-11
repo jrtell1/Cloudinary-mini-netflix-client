@@ -10,6 +10,8 @@
 </template>
 <script>
   export default {
+    name: 'videolist',
+
     props: {
       cloudinaryInstance: {
         required: true
