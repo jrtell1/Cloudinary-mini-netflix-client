@@ -126,7 +126,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -145,5 +145,9 @@
   .navbar-item {
     height: 25px;
     width: auto;
+  }
+
+  .navbar-brand a:hover {
+    background-color: transparent;
   }
 </style>
