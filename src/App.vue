@@ -68,6 +68,11 @@
   import VideoList from './components/VideoList'
   import UploadModal from './components/UploadModal'
 
+  const config = {
+    apiUrl: 'https://wt-3ab4f5008e0b86a1e53e234e9d9ee5aa-0.sandbox.auth0-extend.com/server',
+    cloudName: 'jrtell'
+  };
+
   export default {
     name: 'app',
 
@@ -81,18 +86,17 @@
       return {
         movie: {},
         movies: [],
-        url: 'https://wt-3ab4f5008e0b86a1e53e234e9d9ee5aa-0.sandbox.auth0-extend.com/server/movies',
         showModal: false
       }
     },
 
     created() {
       this.cloudinaryInstance = window.cloudinary.Cloudinary.new({
-        cloud_name: 'jrtell',
+        cloud_name: config.cloudName,
         secure: true
       });
 
-      axios.get(this.url).then(response => {
+      axios.get(config.apiUrl + '/movies').then(response => {
         this.movies = response.data;
       });
     },
