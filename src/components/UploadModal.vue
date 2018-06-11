@@ -20,6 +20,10 @@
         <span class="has-text-white">{{ trailer }}</span>
       </div>
 
+      <div class="field">
+        <div class="upload-area" ref="uploadArea"></div>
+      </div>
+
       <button class="button is-danger">Submit</button>
     </form>
   </sweet-modal>
@@ -65,15 +69,19 @@
        * @param {String} type
        */
       startUpload(type) {
+        const options = {
+          cloud_name: config.cloudinary.cloudName,
+          upload_preset: config.cloudinary.uploadPreset,
+          multiple: false,
+          max_files: 1,
+          theme: 'minimal',
+          // inline_container: '.upload-area'
+        };
+
         // eslint-disable-next-line
-        cloudinary.openUploadWidget(
-          { cloud_name: config.cloudinary.cloudName, upload_preset: config.cloudinary.uploadPreset },
-          (error, result) => {
-            type === 'banner'
-              ? (this.banner = result[0].public_id)
-              : (this.trailer = result[0].public_id);
-          }
-        );
+        cloudinary.openUploadWidget(options, (error, result) => {
+          type === 'banner' ? (this.banner = result[0].public_id) : (this.trailer = result[0].public_id);
+        });
       },
 
       /**
