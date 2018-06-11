@@ -101,7 +101,7 @@
 
     methods: {
       /**
-       * Fetches movies asynchronously.
+       * Fetches movies asynchronously and updates movies list.
        */
       async fetchMovies() {
         const { data: movies } = await axios.get(config.apiUrl + '/movies');
