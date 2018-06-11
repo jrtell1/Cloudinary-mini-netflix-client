@@ -4,7 +4,7 @@
       <div class="field">
         <label class="label has-text-white">Name</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input" v-model="title">
+          <input class="input" type="text" placeholder="Enter the movie title..." v-model="title">
         </div>
       </div>
 
