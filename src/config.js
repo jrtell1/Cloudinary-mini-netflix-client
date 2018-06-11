@@ -10,6 +10,6 @@ export default {
 
   fallbackMovie: {
     title: 'Black Panther',
-    trailer: 'mini-netflix/Marvel_Studios_Black_Panther_-_Official_Trailer_nmrtr7',
+    trailer: 'mini-netflix/trailers/Marvel_Studios_Black_Panther_-_Official_Trailer_nmrtr7',
   }
 }

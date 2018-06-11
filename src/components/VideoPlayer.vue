@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import config from '../config'
+
   export default {
     name: 'videoplayer',
 
@@ -29,11 +31,11 @@
 
     computed: {
       movieTitle() {
-        return this.movie.title || 'Black Panther';
+        return this.movie.title || config.fallbackMovie.title;
       },
 
       movieTrailer() {
-        return this.movie.trailer || 'mini-netflix/trailers/Marvel_Studios_Black_Panther_-_Official_Trailer_nmrtr7';
+        return this.movie.trailer || config.fallbackMovie.trailer;
       }
     },
 

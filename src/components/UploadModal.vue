@@ -25,6 +25,7 @@
   </sweet-modal>
 </template>
 <script>
+  import config from '../config'
   import { SweetModal, SweetModalTab } from 'sweet-modal-vue';
 
   export default {
@@ -66,7 +67,7 @@
       startUpload(type) {
         // eslint-disable-next-line
         cloudinary.openUploadWidget(
-          { cloud_name: 'jrtell', upload_preset: 'v63gpw1l' },
+          { cloud_name: config.cloudinary.cloudName, upload_preset: config.cloudinary.uploadPreset },
           (error, result) => {
             type === 'banner'
               ? (this.banner = result[0].public_id)

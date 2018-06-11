@@ -63,15 +63,11 @@
 </template>
 
 <script>
+  import config from './config'
   import axios from 'axios'
   import VideoPlayer from './components/VideoPlayer'
   import VideoList from './components/VideoList'
   import UploadModal from './components/UploadModal'
-
-  const config = {
-    apiUrl: 'https://wt-3ab4f5008e0b86a1e53e234e9d9ee5aa-0.sandbox.auth0-extend.com/server',
-    cloudName: 'jrtell'
-  };
 
   export default {
     name: 'app',
@@ -92,7 +88,7 @@
 
     created() {
       this.cloudinaryInstance = window.cloudinary.Cloudinary.new({
-        cloud_name: config.cloudName,
+        cloud_name: config.cloudinary.cloudName,
         secure: true
       });
 
@@ -104,7 +100,7 @@
        * Fetches movies asynchronously and updates movies list.
        */
       async fetchMovies() {
-        const { data: movies } = await axios.get(config.apiUrl + '/movies');
+        const { data: movies } = await axios.get(config.api.url + '/movies');
         this.movies = movies;
       },
 
@@ -123,7 +119,7 @@
        * @param data
        */
       uploadToServer(data) {
-        axios.post(config.apiUrl + '/movies', data).then(response => {
+        axios.post(config.api.url + '/movies', data).then(response => {
           this.movies = [...this.movies, response.data];
           this.showModal = false;
         })
