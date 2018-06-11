@@ -96,12 +96,18 @@
         secure: true
       });
 
-      axios.get(config.apiUrl + '/movies').then(response => {
-        this.movies = response.data;
-      });
+      this.fetchMovies();
     },
 
     methods: {
+      /**
+       * Fetches movies asynchronously.
+       */
+      async fetchMovies() {
+        const { data: movies } = await axios.get(config.apiUrl + '/movies');
+        this.movies = movies;
+      },
+
       /**
        * Sets new movie for the video player.
        *
