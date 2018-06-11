@@ -123,7 +123,7 @@
        * @param data
        */
       uploadToServer(data) {
-        axios.post(this.url, data).then(response => {
+        axios.post(config.apiUrl + '/movies', data).then(response => {
           this.movies = [...this.movies, response.data];
           this.showModal = false;
         })
