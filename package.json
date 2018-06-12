@@ -10,6 +10,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.1",
+    "cloudinary-core": "^2.5.0",
+    "cloudinary-video-player": "^1.0.1",
     "node-sass": "^4.7.2",
     "rollup": "^0.60.1",
     "sass-loader": "^6.0.7",
