@@ -139,29 +139,6 @@
 
     methods: {
       /**
-       * Uploads resource to Cloudinary, acceptable types are
-       * 'banner' and 'trailer'.
-       *
-       * @param {String} type
-       */
-      startUpload(type) {
-        const options = {
-          cloud_name: config.cloudinary.cloudName,
-          upload_preset: config.cloudinary.uploadPreset,
-          multiple: false,
-          max_files: 1,
-          theme: 'white',
-          stylesheet: '#cloudinary-overlay.modal { background-color: transparent }',
-          // inline_container: '.upload-area'
-        };
-
-        // eslint-disable-next-line
-        cloudinary.openUploadWidget(options, (error, result) => {
-          type === 'banner' ? (this.banner = result[0].public_id) : (this.trailer = result[0].public_id);
-        });
-      },
-
-      /**
        * Emits 'handle-upload' event, but only when all resources
        * has been uploaded and set.
        */
