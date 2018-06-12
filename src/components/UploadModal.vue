@@ -21,55 +21,57 @@
       </div>
 
       <transition name="height">
-      <div class="columns is-mobile" v-show="isStep1Valid">
-        <div class="column is-narrow step-container">
-          <p class="step">2</p>
+        <div class="columns is-mobile" v-show="isStep1Valid">
+          <div class="column is-narrow step-container">
+            <p class="step">2</p>
             <p class="check">
             <span class="icon is-small is-right" v-show="isStep2Valid">
               <i class="fas fa-check"></i>
             </span>
             </p>
-        </div>
-        <div class="column">
-          <div class="field">
-            <label class="label has-text-white">Upload Banner</label>
-            <span class="has-text-white">{{ banner }}</span>
-            <transition name="height">
-              <div class="banner-upload-area" v-show="!isStep2Valid"></div>
-            </transition>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-white">Upload Banner</label>
+              <span class="has-text-white">{{ banner }}</span>
+              <transition name="height">
+                <div class="banner-upload-area" v-show="!isStep2Valid"></div>
+              </transition>
+            </div>
           </div>
         </div>
-      </div>
       </transition>
 
       <transition name="height">
-      <div class="columns is-mobile" v-show="isStep2Valid && isStep1Valid">
-        <div class="column is-narrow step-container">
-          <p class="step">3</p>
+        <div class="columns is-mobile" v-show="isStep2Valid && isStep1Valid">
+          <div class="column is-narrow step-container">
+            <p class="step">3</p>
             <p class="check">
             <span class="icon is-small is-right" v-show="isStep3Valid">
               <i class="fas fa-check"></i>
             </span>
             </p>
-        </div>
-        <div class="column">
-          <div class="field">
-            <label class="label has-text-white">Upload Video</label>
-            <span class="has-text-white">{{ trailer }}</span>
-            <transition name="height">
-              <div class="trailer-upload-area" v-show="!isStep3Valid"></div>
-            </transition>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-white">Upload Video</label>
+              <span class="has-text-white">{{ trailer }}</span>
+              <transition name="height">
+                <div class="trailer-upload-area" v-show="!isStep3Valid"></div>
+              </transition>
+            </div>
           </div>
         </div>
-      </div>
       </transition>
 
       <transition name="height">
-      <div class="columns is-centered is-mobile" v-show="isAllStepsValid">
-        <div class="column is-narrow">
-          <button class="button is-danger" :class="{ 'is-loading': isProcessingUpload }" :disabled="!isAllStepsValid">Submit</button>
+        <div class="columns is-centered is-mobile" v-show="isAllStepsValid">
+          <div class="column is-narrow">
+            <button class="button is-danger" :class="{ 'is-loading': isProcessingUpload }" :disabled="!isAllStepsValid">
+              Submit
+            </button>
+          </div>
         </div>
-      </div>
       </transition>
     </form>
   </sweet-modal>
