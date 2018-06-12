@@ -33,6 +33,7 @@
       </div>
       </transition>
 
+      <transition name="height">
       <div class="columns is-mobile" v-show="isStep2Valid">
         <div class="column is-narrow step-container">
           <p class="step">3</p>
@@ -45,6 +46,7 @@
           </div>
         </div>
       </div>
+      </transition>
 
       <div class="field">
         <div class="upload-area" ref="uploadArea"></div>
