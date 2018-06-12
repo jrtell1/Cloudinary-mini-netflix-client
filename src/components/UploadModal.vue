@@ -1,6 +1,6 @@
 <template>
   <sweet-modal modal-theme="dark" overlay-theme="dark" ref="modal" v-on="$listeners">
-    <form @submit.prevent="handleUpload()" class="has-text-left">
+    <form @submit.prevent="emitUpload()" class="has-text-left">
       <div class="columns is-mobile">
         <div class="column is-narrow step-container">
           <p class="step">1</p>
@@ -165,7 +165,7 @@
        * Emits 'handle-upload' event, but only when all resources
        * has been uploaded and set.
        */
-      handleUpload() {
+      emitUpload() {
         const data = {
           title: this.title,
           banner: this.banner,
