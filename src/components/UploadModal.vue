@@ -1,30 +1,60 @@
 <template>
   <sweet-modal modal-theme="dark" overlay-theme="dark" ref="modal" v-on="$listeners">
     <form @submit.prevent="handleUpload()" class="has-text-left">
-      <div class="field">
-        <label class="label has-text-white">Name</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="Enter the movie title..." v-model="title">
+      <div class="columns">
+        <div class="column is-narrow step-container">
+          <p class="step">1</p>
+        </div>
+        <div class="column is-mobile">
+          <div class="field">
+            <label class="label has-text-white">Name</label>
+            <div class="control has-icons-right">
+              <input class="input" :class="{ 'is-success': isStep1Valid }" type="text" placeholder="Enter the movie title..." v-model="title">
+              <span class="icon is-small is-right" v-show="isStep1Valid">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="field">
-        <label class="label has-text-white">Upload Banner</label>
-        <button class="button" @click="startUpload('banner')">Upload</button>
-        <span class="has-text-white">{{ banner }}</span>
+      <transition name="height">
+      <div class="columns is-mobile" v-show="isStep1Valid">
+        <div class="column is-narrow step-container">
+          <p class="step">2</p>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-white">Upload Banner</label>
+            <button class="button" @click="startUpload('banner')">Upload</button>
+            <span class="has-text-white">{{ banner }}</span>
+          </div>
+        </div>
       </div>
+      </transition>
 
-      <div class="field">
-        <label class="label has-text-white">Upload Video</label>
-        <button class="button" @click="startUpload('trailer')">Upload</button>
-        <span class="has-text-white">{{ trailer }}</span>
+      <div class="columns is-mobile" v-show="isStep2Valid">
+        <div class="column is-narrow step-container">
+          <p class="step">3</p>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-white">Upload Video</label>
+            <button class="button" @click="startUpload('trailer')">Upload</button>
+            <span class="has-text-white">{{ trailer }}</span>
+          </div>
+        </div>
       </div>
 
       <div class="field">
         <div class="upload-area" ref="uploadArea"></div>
       </div>
 
-      <button class="button is-danger">Submit</button>
+      <div class="columns is-centered is-mobile">
+        <div class="column is-narrow">
+          <button class="button is-danger" :disabled="!isAllStepsValid">Submit</button>
+        </div>
+      </div>
     </form>
   </sweet-modal>
 </template>
@@ -55,6 +85,24 @@
       }
     },
 
+    computed: {
+      isStep1Valid() {
+        return this.title !== '';
+      },
+
+      isStep2Valid() {
+        return false;
+      },
+
+      isStep3Valid() {
+        return false;
+      },
+
+      isAllStepsValid() {
+        return this.isStep1Valid && this.isStep2Valid && this.isStep3Valid;
+      }
+    },
+
     watch: {
       showModal(value) {
         value ? this.$refs.modal.open() : this.$refs.modal.close();
@@ -74,7 +122,8 @@
           upload_preset: config.cloudinary.uploadPreset,
           multiple: false,
           max_files: 1,
-          theme: 'minimal',
+          theme: 'white',
+          stylesheet: '#cloudinary-overlay.modal { background-color: transparent }',
           // inline_container: '.upload-area'
         };
 
@@ -100,3 +149,30 @@
     }
   };
 </script>
+
+<style scoped>
+    .step-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .step {
+        border: 2px solid #d81f26;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        padding: 0 11px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .height-enter-active, .height-leave-active {
+        transition: all .5s;
+        max-height: 100px;
+    }
+    .height-enter, .height-leave-to {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+</style>
