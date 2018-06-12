@@ -177,6 +177,11 @@
         }
       },
 
+      /**
+       * Mounts an upload widget to the banner container.
+       *
+       * @param options
+       */
       mountBannerUploadWidget(options) {
         const modifiedOptions = {
           inline_container: '.banner-upload-area',
@@ -189,6 +194,11 @@
         });
       },
 
+      /**
+       * Mounts an upload widget to the trailer container.
+       *
+       * @param options
+       */
       mountTrailerUploadWidget(options) {
         const modifiedOptions = {
           inline_container: '.trailer-upload-area',
