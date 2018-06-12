@@ -56,6 +56,7 @@
 
     <upload-modal
       :show-modal="showModal"
+      :is-processing-upload="isUploading"
       @handle-upload="uploadToServer"
       @close="showModal = false"
     ></upload-modal>
@@ -82,7 +83,8 @@
       return {
         movie: {},
         movies: [],
-        showModal: false
+        showModal: false,
+        isUploading: false
       }
     },
 
@@ -119,9 +121,12 @@
        * @param data
        */
       uploadToServer(data) {
+        this.isUploading = true;
+
         axios.post(config.api.url + '/movies', data).then(response => {
           this.movies = [...this.movies, response.data];
           this.showModal = false;
+          this.isUploading = false;
         })
       }
     }

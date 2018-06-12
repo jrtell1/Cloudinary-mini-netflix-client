@@ -67,7 +67,7 @@
       <transition name="height">
       <div class="columns is-centered is-mobile" v-show="isAllStepsValid">
         <div class="column is-narrow">
-          <button class="button is-danger" :disabled="!isAllStepsValid">Submit</button>
+          <button class="button is-danger" :class="{ 'is-loading': isProcessingUpload }" :disabled="!isAllStepsValid">Submit</button>
         </div>
       </div>
       </transition>
@@ -90,6 +90,10 @@
       showModal: {
         type: Boolean,
         required: true
+      },
+      isProcessingUpload: {
+        type: Boolean,
+        required: false
       }
     },
 
