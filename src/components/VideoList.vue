@@ -21,6 +21,7 @@
     </div>
   </div>
 </template>
+
 <script>
   export default {
     name: 'videolist',
@@ -48,14 +49,15 @@
     }
   }
 </script>
-<style>
+
+<style scoped lang="scss">
   .banner {
     max-width: 204px;
     height: auto;
-  }
 
-  .banner:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .video-list-container {
@@ -74,6 +76,13 @@
     width: 204px;
     height: 306px;
     background: rgba(27, 27, 27, 0.7);
+    animation: 1000ms ease infinite pulse;
+  }
+
+  @for $i from 1 through 6 {
+    .placeholder-container:nth-child(#{$i}) .placeholder-banner {
+      animation-delay: $i * 100ms;
+    }
   }
 
   .arrow {
@@ -84,13 +93,27 @@
     align-items: center;
     background: rgba(27, 27, 27, 0.7);
     padding: 5px;
+
+    &.arrow-right {
+      right: 0;
+    }
+
+    &.arrow-left {
+      left: 0;
+    }
   }
 
-  .arrow-right {
-    right: 0;
-  }
+  @keyframes pulse {
+    0% {
+      background: rgba(27, 27, 27, 0.7);
+    }
 
-  .arrow-left {
-    left: 0;
+    25% {
+      background: rgba(27, 27, 27, 0.5);
+    }
+
+    50% {
+      background: rgba(27, 27, 27, 0.7);
+    }
   }
 </style>
