@@ -2,12 +2,12 @@
   <div class="video-list-container">
     <div class="video-list">
       <div class="columns" v-for="i in Math.ceil(movies.length / 6)" :key="i">
-        <div v-for="movie in movies.slice((i - 1) * 6, i * 6)" :key="movie._id" class="column">
-          <img :src="bannerUrl(movie.banner)" alt="" class="banner" @click="$emit('choose-movie', movie)">
+        <div class="column is-narrow" v-for="movie in movies.slice((i - 1) * 6, i * 6)" :key="movie._id">
+          <img :src="bannerUrl(movie.banner)" :alt="movie.title" class="banner" @click="$emit('choose-movie', movie)">
         </div>
       </div>
       <div class="columns">
-        <div class="column" v-for="n in 7" :key="n" v-show="movies.length < 1">
+        <div class="column is-narrow" v-for="n in 12" :key="n" v-show="movies.length < 1">
           <div class="placeholder-banner"></div>
         </div>
       </div>
@@ -79,7 +79,7 @@
     animation: 1000ms ease infinite pulse;
   }
 
-  @for $i from 1 through 7 {
+  @for $i from 1 through 12 {
     .placeholder-container:nth-child(#{$i}) .placeholder-banner {
       animation-delay: $i * 100ms;
     }
