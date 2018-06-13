@@ -47,12 +47,12 @@
 
     <div class="container">
       <h2 class="is-size-3">Movies</h2>
-      <video-list
-        :cloudinary-instance="cloudinaryInstance"
-        :movies="movies"
-        @choose-movie="updatePlayer"
-      ></video-list>
     </div>
+    <video-list
+      :cloudinary-instance="cloudinaryInstance"
+      :movies="movies"
+      @choose-movie="updatePlayer"
+    ></video-list>
 
     <upload-modal
       :show-modal="showModal"
