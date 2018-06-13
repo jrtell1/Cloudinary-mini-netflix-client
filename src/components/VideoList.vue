@@ -2,9 +2,13 @@
   <div class="video-list-container">
     <div class="video-list">
       <div class="columns" v-for="i in Math.ceil(movies.length / 6)" :key="i">
-        <div v-if="movies.length < 1">Loading...</div>
-        <div v-else v-for="movie in movies.slice((i - 1) * 6, i * 6)" :key="movie._id" class="column">
+        <div v-for="movie in movies.slice((i - 1) * 6, i * 6)" :key="movie._id" class="column">
           <img :src="bannerUrl(movie.banner)" alt="" class="banner" @click="$emit('choose-movie', movie)">
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column" v-for="n in 6" :key="n" v-show="movies.length < 1">
+          <div class="placeholder-banner"></div>
         </div>
       </div>
     </div>
@@ -61,21 +65,25 @@
   }
 
   .video-list {
-    padding: 15px;
+    padding: 20px;
     overflow-x: scroll;
     overflow-y: hidden;
   }
 
+  .placeholder-banner {
+    width: 204px;
+    height: 306px;
+    background: rgba(27, 27, 27, 0.7);
+  }
+
   .arrow {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    /*font-size: 30px;*/;
-    height: 100%;
+    top: 15px;
+    bottom: 15px;
     display: flex;
     align-items: center;
-    background: grey;
-    opacity: 0.5;
+    background: rgba(27, 27, 27, 0.7);
+    padding: 5px;
   }
 
   .arrow-right {
