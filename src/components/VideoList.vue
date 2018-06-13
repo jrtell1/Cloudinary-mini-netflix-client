@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="columns">
-        <div class="column" v-for="n in 6" :key="n" v-show="movies.length < 1">
+        <div class="column" v-for="n in 7" :key="n" v-show="movies.length < 1">
           <div class="placeholder-banner"></div>
         </div>
       </div>
@@ -79,7 +79,7 @@
     animation: 1000ms ease infinite pulse;
   }
 
-  @for $i from 1 through 6 {
+  @for $i from 1 through 7 {
     .placeholder-container:nth-child(#{$i}) .placeholder-banner {
       animation-delay: $i * 100ms;
     }
