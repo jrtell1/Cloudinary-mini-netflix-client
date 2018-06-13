@@ -76,6 +76,7 @@
     </form>
   </sweet-modal>
 </template>
+
 <script>
   import config from '../config'
   import { SweetModal, SweetModalTab } from 'sweet-modal-vue';
