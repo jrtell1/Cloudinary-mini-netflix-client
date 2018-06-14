@@ -44,7 +44,12 @@
        * @returns {String}
        */
       bannerUrl(bannerName) {
-        return this.cloudinaryInstance.url(bannerName);
+        return this.cloudinaryInstance.url(bannerName, {
+          width: 200,
+          height: 300,
+          quality: 'auto',
+          crop: 'fill'
+        });
       }
     }
   }
@@ -52,7 +57,7 @@
 
 <style scoped lang="scss">
   .banner {
-    max-width: 204px;
+    max-width: 200px;
     height: auto;
 
     &:hover {
@@ -68,13 +73,14 @@
 
   .video-list {
     padding: 20px;
+    height: 370px;
     overflow-x: scroll;
     overflow-y: hidden;
   }
 
   .placeholder-banner {
-    width: 204px;
-    height: 306px;
+    width: 200px;
+    height: 300px;
     background: rgba(27, 27, 27, 0.7);
     animation: 1000ms ease infinite pulse;
   }
