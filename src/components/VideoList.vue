@@ -48,7 +48,9 @@
           width: 200,
           height: 300,
           quality: 'auto',
-          crop: 'fill'
+          crop: 'fill',
+          effect: 'auto_saturation',
+          fetchFormat: 'auto'
         });
       }
     }
