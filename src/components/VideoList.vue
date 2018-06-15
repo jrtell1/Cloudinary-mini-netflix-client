@@ -59,9 +59,11 @@
   .banner {
     max-width: 200px;
     height: auto;
+    transition: transform 200ms;
 
     &:hover {
       cursor: pointer;
+      transform: scale(1.1);
     }
   }
 
