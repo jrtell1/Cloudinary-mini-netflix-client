@@ -140,7 +140,7 @@
     -moz-osx-font-smoothing: grayscale;
     color: #e5e5e5;
     background-color: #000;
-    padding-top: 30px;
+    padding-top: 80px;
   }
 
   .navbar {
