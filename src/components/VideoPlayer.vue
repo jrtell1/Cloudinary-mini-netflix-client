@@ -3,19 +3,13 @@
     <video
       id="trailer"
       autoplay
-      loop
       controls
       class="cld-video-player player-bg-video">
     </video>
-    <div class="player-content">
-      <h1 class="is-size-1 has-text-weight-bold">{{ movieTitle }}</h1>
-    </div>
   </div>
 </template>
 
 <script>
-  import config from '../config'
-
   export default {
     name: 'videoplayer',
 
@@ -23,25 +17,35 @@
       cloudinaryInstance: {
         required: true
       },
-      movie: {
-        type: Object,
-        required: true
+      movies: {
+        type: Array
+      },
+      activeMovie: {
+        type: Number,
+        default: 0
       }
     },
 
     computed: {
-      movieTitle() {
-        return this.movie.title || config.fallbackMovie.title;
-      },
-
-      movieTrailer() {
-        return this.movie.trailer || config.fallbackMovie.trailer;
+      playlist() {
+        return this.movies.map(movie => {
+          return {
+            publicId: movie.trailer,
+            info: {
+              title: movie.title
+            }
+          }
+        });
       }
     },
 
     watch: {
-      movie(newMovie) {
-        this.player.source(newMovie.trailer);
+      playlist(newPlaylist) {
+        this.setPlaylist(newPlaylist);
+      },
+
+      activeMovie(index) {
+        this.player.playlist().playAtIndex(index);
       }
     },
 
@@ -59,7 +63,7 @@
 
       this.player.volume(localStorage.getItem('playerVolume') || 0.4);
       this.player.on('volumechange', this.onVolumeChanged);
-      this.player.source(this.movieTrailer);
+      this.setPlaylist(this.playlist);
 
       document.hidden && this.player.mute();
       window.onfocus = () => this.player.unmute();
@@ -72,6 +76,17 @@
        */
       onVolumeChanged() {
         localStorage.setItem('playerVolume', this.player.volume());
+      },
+
+      /**
+       * Set new playlist.
+       *
+       * @param {Array} newList
+       */
+      setPlaylist(newList) {
+        if (!newList || newList.length < 1) return; // We can't set an empty array as playlist
+
+        this.player.playlist(newList, { autoAdvance: true, repeat: true, presentUpcoming: 8 });
       }
     }
   }
@@ -86,11 +101,5 @@
     position: absolute;
     width: 100%;
     outline: none;
-  }
-
-  .player-content {
-    position: absolute;
-    top: 30%;
-    left: 200px;
   }
 </style>

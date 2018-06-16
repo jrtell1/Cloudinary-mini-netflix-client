@@ -42,7 +42,8 @@
 
     <video-player
       :cloudinary-instance="cloudinaryInstance"
-      :movie="movie"
+      :movies="movies"
+      :active-movie="activeMovie"
     ></video-player>
 
     <div class="container">
@@ -81,8 +82,8 @@
 
     data() {
       return {
-        movie: {},
         movies: [],
+        activeMovie: 0,
         showModal: false,
         isUploading: false
       }
@@ -109,10 +110,10 @@
       /**
        * Sets new movie for the video player.
        *
-       * @param {Object} movie
+       * @param {Number} movieIndex
        */
-      updatePlayer(movie) {
-        this.movie = movie;
+      updatePlayer(movieIndex) {
+        this.activeMovie = movieIndex;
       },
 
       /**
