@@ -1,12 +1,12 @@
 <template>
   <div class="video-list-container">
     <div class="video-list">
-      <div class="columns" v-for="i in Math.ceil(movies.length / 6)" :key="i">
+      <div class="columns is-mobile" v-for="i in Math.ceil(movies.length / 6)" :key="i">
         <div class="column is-narrow" v-for="(movie, index) in movies.slice((i - 1) * 6, i * 6)" :key="movie._id">
           <img :src="bannerUrl(movie.banner)" :alt="movie.title" class="banner" @click="$emit('choose-movie', index)">
         </div>
       </div>
-      <div class="columns">
+      <div class="columns is-mobile">
         <div class="column is-narrow" v-for="n in 12" :key="n" v-show="movies.length < 1">
           <div class="placeholder-banner"></div>
         </div>
