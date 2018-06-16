@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+
+    <transition name="fade">
+      <loading-screen v-if="!initialized">
+        <img src="https://cloudinary-res.cloudinary.com/image/upload/v1521663307/MiniFlix-Logo_620x180.png" alt="Netflix" width="112" height="28">
+      </loading-screen>
+    </transition>
+
     <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
@@ -61,12 +68,14 @@
       @handle-upload="uploadToServer"
       @close="showModal = false"
     ></upload-modal>
+
   </div>
 </template>
 
 <script>
   import config from './config'
   import axios from 'axios'
+  import LoadingScreen from './components/LoadingScreen'
   import VideoPlayer from './components/VideoPlayer'
   import VideoList from './components/VideoList'
   import UploadModal from './components/UploadModal'
@@ -75,6 +84,7 @@
     name: 'app',
 
     components: {
+      LoadingScreen,
       VideoPlayer,
       VideoList,
       UploadModal
@@ -82,6 +92,7 @@
 
     data() {
       return {
+        initialized: false,
         movies: [],
         activeMovie: 0,
         showModal: false,
@@ -105,6 +116,7 @@
       async fetchMovies() {
         const { data: movies } = await axios.get(config.api.url + '/movies');
         this.movies = movies;
+        this.initialized = true;
       },
 
       /**
@@ -157,5 +169,12 @@
 
   .navbar-brand a:hover {
     background-color: transparent;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 </style>
