@@ -53,7 +53,7 @@
       this.player = this.cloudinaryInstance.videoPlayer('trailer', {
         transformation: {
           crop: 'crop',
-          width: 1200,
+          height: 500,
           aspect_ratio: '16:9',
           x: 100,
           y: 100,
