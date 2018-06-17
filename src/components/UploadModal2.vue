@@ -99,7 +99,7 @@
 
 <script>
   import config from '../config'
-  import {SweetModal, SweetModalTab} from 'sweet-modal-vue';
+  import { SweetModal, SweetModalTab } from 'sweet-modal-vue';
 
   export default {
     name: 'uploadmodal',
@@ -161,9 +161,6 @@
         theme: 'white',
         // stylesheet: '#cloudinary-overlay.modal { background-color: transparent }'
       };
-
-      // this.mountBannerUploadWidget(options);
-      // this.mountTrailerUploadWidget(options);
     },
 
     methods: {
@@ -181,40 +178,6 @@
         if (data.title && this.banner && this.trailer) {
           this.$emit('handle-upload', data);
         }
-      },
-
-      /**
-       * Mounts an upload widget to the banner container.
-       *
-       * @param options
-       */
-      mountBannerUploadWidget(options) {
-        const modifiedOptions = {
-          inline_container: '.banner-upload-area',
-          ...options
-        };
-
-        // eslint-disable-next-line
-        cloudinary.openUploadWidget(modifiedOptions, (error, result) => {
-          this.banner = result[0].public_id;
-        });
-      },
-
-      /**
-       * Mounts an upload widget to the trailer container.
-       *
-       * @param options
-       */
-      mountTrailerUploadWidget(options) {
-        const modifiedOptions = {
-          inline_container: '.trailer-upload-area',
-          ...options
-        };
-
-        // eslint-disable-next-line
-        cloudinary.openUploadWidget(modifiedOptions, (error, result) => {
-          this.trailer = result[0].public_id;
-        });
       }
     }
   };
