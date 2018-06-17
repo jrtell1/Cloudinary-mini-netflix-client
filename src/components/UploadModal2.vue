@@ -46,7 +46,7 @@
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
                   </span>
-                  <span class="file-label">Choose an image…</span>
+                  <span class="file-label">Choose an image</span>
                 </span>
               </label>
             </div>
@@ -74,7 +74,7 @@
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
                   </span>
-                  <span class="file-label">Choose an video…</span>
+                  <span class="file-label">Choose a video</span>
                 </span>
               </label>
             </div>
