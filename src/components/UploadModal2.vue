@@ -14,72 +14,92 @@
           <div class="field">
             <label class="label has-text-white">Name</label>
             <div class="control has-icons-right">
-              <input class="input" :class="{ 'is-success': isStep1Valid }" type="text" placeholder="Enter the movie title..." v-model="title">
+              <input
+                class="input"
+                :class="{ 'is-success': isStep1Valid }"
+                type="text"
+                placeholder="Enter the movie title..."
+                v-model="title"
+              >
             </div>
           </div>
         </div>
       </div>
 
-      <transition name="height">
-        <div class="columns is-mobile" v-show="isStep1Valid">
-          <div class="column is-narrow step-container">
-            <p class="step">2</p>
-            <p class="check">
+      <div class="columns is-mobile">
+        <div class="column is-narrow step-container">
+          <p class="step">2</p>
+          <p class="check">
             <span class="icon is-small is-right" v-show="isStep2Valid">
               <i class="fas fa-check"></i>
             </span>
-            </p>
-          </div>
-          <div class="column">
-            <div class="field">
-              <label class="label has-text-white">Upload Banner</label>
-              <span class="has-text-white">{{ banner }}</span>
-              <transition name="height">
-                <div class="banner-upload-area" v-show="!isStep2Valid"></div>
-              </transition>
+          </p>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-white">Upload Banner</label>
+            <span class="has-text-white">{{ banner }}</span>
+            <div class="file">
+              <label class="file-label">
+                <input class="file-input" type="file" name="resume" :disabled="!isStep1Valid">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose an image…
+                  </span>
+                </span>
+              </label>
             </div>
           </div>
         </div>
-      </transition>
+      </div>
 
-      <transition name="height">
-        <div class="columns is-mobile" v-show="isStep2Valid && isStep1Valid">
-          <div class="column is-narrow step-container">
-            <p class="step">3</p>
-            <p class="check">
+      <div class="columns is-mobile">
+        <div class="column is-narrow step-container">
+          <p class="step">3</p>
+          <p class="check">
             <span class="icon is-small is-right" v-show="isStep3Valid">
               <i class="fas fa-check"></i>
             </span>
-            </p>
-          </div>
-          <div class="column">
-            <div class="field">
-              <label class="label has-text-white">Upload Video</label>
-              <span class="has-text-white">{{ trailer }}</span>
-              <transition name="height">
-                <div class="trailer-upload-area" v-show="!isStep3Valid"></div>
-              </transition>
+          </p>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-white">Upload Video</label>
+            <span class="has-text-white">{{ trailer }}</span>
+            <div class="file">
+              <label class="file-label">
+                <input class="file-input" type="file" name="resume" :disabled="isStep2Valid && isStep1Valid">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose an video…
+                  </span>
+                </span>
+              </label>
             </div>
           </div>
         </div>
-      </transition>
+      </div>
 
-      <transition name="height">
-        <div class="columns is-centered is-mobile" v-show="isAllStepsValid">
-          <div class="column is-narrow">
-            <button class="button is-danger" :class="{ 'is-loading': isProcessingUpload }" :disabled="!isAllStepsValid">
-              Submit
-            </button>
-          </div>
+      <div class="columns is-centered is-mobile">
+        <div class="column is-narrow">
+          <button class="button is-danger" :class="{ 'is-loading': isProcessingUpload }" :disabled="!isAllStepsValid">
+            Submit
+          </button>
         </div>
-      </transition>
+      </div>
     </form>
   </sweet-modal>
 </template>
 
 <script>
   import config from '../config'
-  import { SweetModal, SweetModalTab } from 'sweet-modal-vue';
+  import {SweetModal, SweetModalTab} from 'sweet-modal-vue';
 
   export default {
     name: 'uploadmodal',
@@ -142,8 +162,8 @@
         // stylesheet: '#cloudinary-overlay.modal { background-color: transparent }'
       };
 
-      this.mountBannerUploadWidget(options);
-      this.mountTrailerUploadWidget(options);
+      // this.mountBannerUploadWidget(options);
+      // this.mountTrailerUploadWidget(options);
     },
 
     methods: {
@@ -201,36 +221,25 @@
 </script>
 
 <style scoped>
-    .step-container {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
+  .step-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 
-    .step {
-        border: 2px solid #d81f26;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        padding: 0 11px;
-        font-size: 25px;
-        font-weight: bold;
-    }
+  .step {
+    border: 2px solid #d81f26;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 2px 11px;
+    font-size: 25px;
+    font-weight: bold;
+  }
 
-    .check {
-        margin-top: 10px;
-        font-size: 25px;
-        color: green;
-    }
-
-    .height-enter-active, .height-leave-active {
-        transition: all .5s;
-        max-height: 520px;
-    }
-
-    .height-enter, .height-leave-to {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-    }
+  .check {
+    margin-top: 10px;
+    font-size: 25px;
+    color: green;
+  }
 </style>
