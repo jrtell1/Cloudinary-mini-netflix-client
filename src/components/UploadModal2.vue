@@ -175,7 +175,7 @@
           trailer: this.trailer
         };
 
-        if (data.title && this.banner && this.trailer) {
+        if (this.isAllStepsValid) {
           this.$emit('handle-upload', data);
         }
       }
