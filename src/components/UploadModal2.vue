@@ -41,14 +41,12 @@
             <span class="has-text-white">{{ banner }}</span>
             <div class="file">
               <label class="file-label">
-                <input class="file-input" type="file" name="resume">
+                <input class="file-input" type="file" name="resume" @change="uploadBanner">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
                   </span>
-                  <span class="file-label">
-                    Choose an image…
-                  </span>
+                  <span class="file-label">Choose an image…</span>
                 </span>
               </label>
             </div>
@@ -76,9 +74,7 @@
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
                   </span>
-                  <span class="file-label">
-                    Choose an video…
-                  </span>
+                  <span class="file-label">Choose an video…</span>
                 </span>
               </label>
             </div>
@@ -99,6 +95,7 @@
 
 <script>
   import config from '../config'
+  import axios from 'axios'
   import { SweetModal, SweetModalTab } from 'sweet-modal-vue';
 
   export default {
@@ -164,6 +161,20 @@
     },
 
     methods: {
+      uploadBanner(event) {
+        if (!event.target.files[0]) return;
+
+        const form = new FormData();
+        form.append('file', event.target.files[0]);
+
+      },
+
+      async uploadFile() {
+        const response = await axios.post('https://api.cloudinary.com/v1_1' + config.cloudinary.cloudName + '/image/upload');
+
+        return response;
+      },
+
       /**
        * Emits 'handle-upload' event, but only when all resources
        * has been uploaded and set.
