@@ -227,6 +227,7 @@
         transition: all .5s;
         max-height: 520px;
     }
+
     .height-enter, .height-leave-to {
         max-height: 0;
         opacity: 0;
