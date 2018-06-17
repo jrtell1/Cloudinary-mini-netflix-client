@@ -202,11 +202,14 @@
   }
 
   .step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     border: 2px solid #d81f26;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    padding: 2px 11px;
     font-size: 25px;
     font-weight: bold;
   }
