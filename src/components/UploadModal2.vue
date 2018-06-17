@@ -41,7 +41,7 @@
             <span class="has-text-white">{{ banner }}</span>
             <div class="file">
               <label class="file-label">
-                <input class="file-input" type="file" name="resume" :disabled="!isStep1Valid">
+                <input class="file-input" type="file" name="resume">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
@@ -71,7 +71,7 @@
             <span class="has-text-white">{{ trailer }}</span>
             <div class="file">
               <label class="file-label">
-                <input class="file-input" type="file" name="resume" :disabled="isStep2Valid && isStep1Valid">
+                <input class="file-input" type="file" name="resume">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
