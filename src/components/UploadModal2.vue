@@ -159,9 +159,7 @@
       async uploadBanner(event) {
         if (!event.target.files[0]) return;
 
-        const formData = new FormData();
-        formData.append('upload_preset', config.cloudinary.uploadPreset);
-        formData.append('file', event.target.files[0]);
+        const formData = this.buildFormData(event.target.files[0]);
 
         const { public_id: bannerName = null } = await this.uploadFile({
           formData: formData,
@@ -184,6 +182,19 @@
         } catch (error) {
           return false;
         }
+      },
+      
+      /**
+       * Builds FormData object with given file for uploading.
+       *
+       * @param file
+       */
+      buildFormData(file) {
+        const formData = new FormData();
+        formData.append('upload_preset', config.cloudinary.uploadPreset);
+        formData.append('file', file);
+
+        return formData;
       },
 
       /**
