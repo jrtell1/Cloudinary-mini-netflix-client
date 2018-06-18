@@ -163,17 +163,22 @@
         formData.append('upload_preset', config.cloudinary.uploadPreset);
         formData.append('file', event.target.files[0]);
 
-        const { public_id: bannerName = null } = await this.uploadFile(formData);
+        const { public_id: bannerName = null } = await this.uploadFile({
+          formData: formData,
+          progressBar: 'bannerProgress'
+        });
+
         this.banner = bannerName;
       },
 
       /**
        * @param {Object} formData
+       * @param {String} progressBar
        */
-      async uploadFile(formData) {
+      async uploadFile({ formData, progressBar }) {
         try {
           const url = 'https://api.cloudinary.com/v1_1/' + config.cloudinary.cloudName + '/image/upload';
-          const { data } = await axios.post(url, formData, this.axiosConfig('bannerProgress'));
+          const { data } = await axios.post(url, formData, this.axiosConfig(progressBar));
 
           return data;
         } catch (error) {
