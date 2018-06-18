@@ -164,7 +164,8 @@
 
         const { public_id: bannerName = null } = await this.uploadFile({
           formData: formData,
-          progressBar: 'bannerProgress'
+          progressBar: 'bannerProgress',
+          type: 'image'
         });
 
         this.banner = bannerName;
@@ -180,7 +181,8 @@
 
         const { public_id: trailerName = null } = await this.uploadFile({
           formData: formData,
-          progressBar: 'trailerProgress'
+          progressBar: 'trailerProgress',
+          type: 'video'
         });
 
         this.trailer = trailerName;
@@ -189,11 +191,11 @@
       /**
        * @param {Object} formData
        * @param {String} progressBar
+       * @param {String} type
        */
-      async uploadFile({ formData, progressBar }) {
+      async uploadFile({ formData, progressBar, type }) {
         try {
-          // TODO: Fix VIDEO upload url
-          const url = 'https://api.cloudinary.com/v1_1/' + config.cloudinary.cloudName + '/image/upload';
+          const url = 'https://api.cloudinary.com/v1_1/' + config.cloudinary.cloudName + '/' + type + '/upload';
           const { data } = await axios.post(url, formData, this.axiosConfig(progressBar));
 
           return data;
