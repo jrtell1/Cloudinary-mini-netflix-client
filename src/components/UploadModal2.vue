@@ -192,6 +192,7 @@
        */
       async uploadFile({ formData, progressBar }) {
         try {
+          // TODO: Fix VIDEO upload url
           const url = 'https://api.cloudinary.com/v1_1/' + config.cloudinary.cloudName + '/image/upload';
           const { data } = await axios.post(url, formData, this.axiosConfig(progressBar));
 
