@@ -41,7 +41,7 @@
             <span class="has-text-white">{{ banner }}</span>
             <div class="file">
               <label class="file-label">
-                <input class="file-input" type="file" name="resume" @change="uploadBanner">
+                <input class="file-input" type="file" name="resume" :disabled="bannerProgress > 0" @change="uploadBanner">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
@@ -51,6 +51,7 @@
               </label>
             </div>
           </div>
+          <progress class="progress is-danger" :value="bannerProgress" max="100" v-if="bannerProgress">{{ bannerProgress }}%</progress>
         </div>
       </div>
 
@@ -122,6 +123,8 @@
         title: '',
         banner: null,
         trailer: null,
+        bannerProgress: 0,
+        trailerProgress: 0
       }
     },
 
@@ -169,7 +172,7 @@
       async uploadFile(formData) {
         try {
           const url = 'https://api.cloudinary.com/v1_1/' + config.cloudinary.cloudName + '/image/upload';
-          const { data } = await axios.post(url, formData);
+          const { data } = await axios.post(url, formData, this.axiosConfig('bannerProgress'));
 
           return data;
         } catch (error) {
@@ -191,6 +194,20 @@
         if (this.isAllStepsValid) {
           this.$emit('handle-upload', data);
         }
+      },
+
+      /**
+       * Config object for axios file upload.
+       *
+       * @param progressBar
+       * @returns {Object}
+       */
+      axiosConfig(progressBar) {
+        return {
+          onUploadProgress: event => {
+            this[progressBar] = Math.floor((event.loaded * 100) / event.total);
+          }
+        };
       }
     }
   };
