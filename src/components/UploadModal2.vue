@@ -156,14 +156,15 @@
       /**
        * @param event
        */
-      uploadBanner(event) {
+      async uploadBanner(event) {
         if (!event.target.files[0]) return;
 
         const formData = new FormData();
         formData.append('upload_preset', config.cloudinary.uploadPreset);
         formData.append('file', event.target.files[0]);
 
-        this.uploadFile(formData);
+        const { public_id: bannerName = null } = await this.uploadFile(formData);
+        this.banner = bannerName;
       },
 
       /**
