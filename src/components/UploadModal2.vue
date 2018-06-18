@@ -149,17 +149,6 @@
       }
     },
 
-    mounted() {
-      const options = {
-        cloud_name: config.cloudinary.cloudName,
-        upload_preset: config.cloudinary.uploadPreset,
-        multiple: false,
-        max_files: 1,
-        theme: 'white',
-        // stylesheet: '#cloudinary-overlay.modal { background-color: transparent }'
-      };
-    },
-
     methods: {
       uploadBanner(event) {
         if (!event.target.files[0]) return;
