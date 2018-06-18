@@ -12,6 +12,13 @@
         </div>
       </div>
     </div>
+
+    <div class="arrow arrow-left">
+      <i class="fas fa-angle-left fa-5x"></i>
+    </div>
+    <div class="arrow arrow-right">
+      <i class="fas fa-angle-right fa-5x"></i>
+    </div>
   </div>
 </template>
 
