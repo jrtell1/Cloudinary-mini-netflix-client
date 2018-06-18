@@ -150,18 +150,31 @@
     },
 
     methods: {
+      /**
+       * @param event
+       */
       uploadBanner(event) {
         if (!event.target.files[0]) return;
 
-        const form = new FormData();
-        form.append('file', event.target.files[0]);
+        const formData = new FormData();
+        formData.append('upload_preset', config.cloudinary.cloudName);
+        formData.append('file', event.target.files[0]);
 
+        this.uploadFile(formData);
       },
 
-      async uploadFile() {
-        const response = await axios.post('https://api.cloudinary.com/v1_1' + config.cloudinary.cloudName + '/image/upload');
+      /**
+       * @param {Object} formData
+       */
+      async uploadFile(formData) {
+        try {
+          const url = 'https://api.cloudinary.com/v1_1/' + config.cloudinary.cloudName + '/image/upload';
+          const { data } = await axios.post(url, formData);
 
-        return response;
+          return data;
+        } catch (error) {
+          return false;
+        }
       },
 
       /**
