@@ -41,7 +41,7 @@
             <span class="has-text-white">{{ banner }}</span>
             <div class="file">
               <label class="file-label">
-                <input class="file-input" type="file" name="resume" :disabled="bannerProgress > 0" @change="uploadBanner">
+                <input class="file-input" type="file" :disabled="bannerProgress > 0" @change="uploadBanner">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
@@ -70,7 +70,7 @@
             <span class="has-text-white">{{ trailer }}</span>
             <div class="file">
               <label class="file-label">
-                <input class="file-input" type="file" name="resume">
+                <input class="file-input" type="file" :disabled="trailerProgress > 0" @change="uploadTrailer">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
@@ -80,6 +80,7 @@
               </label>
             </div>
           </div>
+          <progress class="progress is-danger" :value="trailerProgress" max="100" v-if="trailerProgress">{{ trailerProgress }}%</progress>
         </div>
       </div>
 
@@ -167,6 +168,22 @@
         });
 
         this.banner = bannerName;
+      },
+
+      /**
+       * @param event
+       */
+      async uploadTrailer(event) {
+        if (!event.target.files[0]) return;
+
+        const formData = this.buildFormData(event.target.files[0]);
+
+        const { public_id: trailerName = null } = await this.uploadFile({
+          formData: formData,
+          progressBar: 'trailerProgress'
+        });
+
+        this.trailer = trailerName;
       },
 
       /**
