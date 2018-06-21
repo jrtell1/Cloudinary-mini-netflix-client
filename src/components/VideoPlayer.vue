@@ -20,7 +20,7 @@
       movies: {
         type: Array
       },
-      activeMovie: {
+      activeMovieIndex: {
         type: Number,
         default: 0
       }
@@ -44,7 +44,7 @@
         this.setPlaylist(newPlaylist);
       },
 
-      activeMovie(index) {
+      activeMovieIndex(index) {
         this.player.playlist().playAtIndex(index);
       }
     },

@@ -50,7 +50,7 @@
     <video-player
       :cloudinary-instance="cloudinaryInstance"
       :movies="movies"
-      :active-movie="activeMovie"
+      :active-movie-index="activeMovie"
     ></video-player>
 
     <div class="container">
