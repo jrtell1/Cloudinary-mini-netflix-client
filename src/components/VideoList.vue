@@ -3,7 +3,10 @@
     <div class="video-list">
       <div class="columns is-mobile" v-for="i in Math.ceil(movies.length / 6)" :key="i">
         <div class="column is-narrow" v-for="(movie, index) in movies.slice((i - 1) * 6, i * 6)" :key="movie._id">
-          <img :src="bannerUrl(movie.banner)" :alt="movie.title" class="banner" @click="$emit('choose-movie', index)">
+          <div class="banner-container" @click="$emit('choose-movie', index)" @mouseover="showPreview(index)">
+            <img :src="bannerUrl(movie.banner)" :alt="movie.title" class="banner">
+            <video class="preview" autoplay muted loop :src="previewUrl(movie.trailer)" v-if="currentPreviewIndex === index"></video>
+          </div>
         </div>
       </div>
       <div class="columns is-mobile">
@@ -29,7 +32,17 @@
       }
     },
 
+    data() {
+      return {
+        currentPreviewIndex: null
+      }
+    },
+
     methods: {
+      showPreview(index) {
+        this.currentPreviewIndex = index;
+      },
+
       /**
        * Generates a Cloudinary url for the given banner.
        *
@@ -45,27 +58,44 @@
           effect: 'auto_saturation',
           fetchFormat: 'auto'
         });
+      },
+
+      previewUrl(trailerName) {
+        return this.cloudinaryInstance.video_url(trailerName, {
+          width: 200,
+          height: 300,
+          quality: 'auto',
+          crop: 'fill',
+          gravity: 'center',
+          effect: 'auto_saturation',
+          fetchFormat: 'auto',
+          duration: 8
+        });
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
+  .banner-container {
+    position: relative;
+    transition: transform 200ms;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
   .banner {
     max-width: 200px;
     height: auto;
-    transition: transform 200ms;
     user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.1);
-    }
   }
 
   .video-list-container {
@@ -79,6 +109,14 @@
     height: 370px;
     overflow-x: scroll;
     overflow-y: hidden;
+  }
+
+  .preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
   }
 
   .placeholder-banner {
