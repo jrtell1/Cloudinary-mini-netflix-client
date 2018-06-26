@@ -63,6 +63,7 @@
 
       this.player.volume(localStorage.getItem('playerVolume') || 0.4);
       this.player.on('volumechange', this.onVolumeChanged);
+      this.player.on('sourcechanged', this.onSourceChanged);
       this.setPlaylist(this.playlist);
 
       document.hidden && this.player.mute();
@@ -76,6 +77,13 @@
        */
       onVolumeChanged() {
         localStorage.setItem('playerVolume', this.player.volume());
+      },
+
+      /**
+       * If movie is changed from within the player, emit the new index.
+       */
+      onSourceChanged() {
+        this.$emit('choose-movie', this.player.playlist().currentIndex());
       },
 
       /**
