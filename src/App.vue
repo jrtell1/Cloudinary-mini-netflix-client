@@ -78,7 +78,7 @@
   import LoadingScreen from './components/LoadingScreen'
   import VideoPlayer from './components/VideoPlayer'
   import VideoList from './components/VideoList'
-  import UploadModal from './components/UploadModal2'
+  import UploadModal from './components/UploadModal'
 
   export default {
     name: 'app',
