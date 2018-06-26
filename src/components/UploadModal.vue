@@ -1,6 +1,6 @@
 <template>
   <sweet-modal modal-theme="dark" overlay-theme="dark" ref="modal" v-on="$listeners">
-    <form @submit.prevent="emitUpload()" class="has-text-left">
+    <form @submit.prevent="emitUpload" class="has-text-left">
       <div class="columns is-mobile">
         <div class="column is-narrow step-container">
           <p class="step">1</p>
