@@ -19,6 +19,15 @@
 </template>
 
 <script>
+  const baseTransformations = {
+    width: 200,
+    height: 300,
+    quality: 'auto',
+    crop: 'fill',
+    effect: 'auto_saturation',
+    fetchFormat: 'auto'
+  };
+
   export default {
     name: 'videolist',
 
@@ -50,26 +59,13 @@
        * @returns {String}
        */
       bannerUrl(bannerName) {
-        return this.cloudinaryInstance.url(bannerName, {
-          width: 200,
-          height: 300,
-          quality: 'auto',
-          crop: 'fill',
-          effect: 'auto_saturation',
-          fetchFormat: 'auto'
-        });
+        return this.cloudinaryInstance.url(bannerName, baseTransformations);
       },
 
       previewUrl(trailerName) {
         return this.cloudinaryInstance.video_url(trailerName, {
-          width: 200,
-          height: 300,
-          quality: 'auto',
-          crop: 'fill',
-          gravity: 'center',
-          effect: 'auto_saturation',
-          fetchFormat: 'auto',
-          duration: 8
+          ...baseTransformations,
+          duration: 7
         });
       }
     }
