@@ -59,6 +59,7 @@
     <video-list
       :cloudinary-instance="cloudinaryInstance"
       :movies="movies"
+      :active-movie-index="activeMovie"
       @choose-movie="updatePlayer"
     ></video-list>
 

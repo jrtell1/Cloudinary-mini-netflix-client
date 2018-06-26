@@ -3,7 +3,12 @@
     <div class="video-list">
       <div class="columns is-mobile" v-for="i in Math.ceil(movies.length / 6)" :key="i">
         <div class="column is-narrow" v-for="(movie, index) in movies.slice((i - 1) * 6, i * 6)" :key="movie._id">
-          <div class="banner-container" @click="$emit('choose-movie', index)" @mouseover="showPreview(index)">
+          <div
+            class="banner-container"
+            :class="{ 'is-active': activeMovieIndex === index }"
+            @click="$emit('choose-movie', index)"
+            @mouseover="showPreview(index)"
+          >
             <img :src="bannerUrl(movie.banner)" :alt="movie.title" class="banner">
             <video
               v-if="currentPreviewIndex === index"
@@ -14,6 +19,7 @@
               :src="previewUrl(movie.trailer)"
               @mouseleave="hidePreview"
             ></video>
+            <span v-if="activeMovieIndex === index" class="playing-label">Playing</span>
           </div>
         </div>
       </div>
@@ -46,7 +52,11 @@
       movies: {
         type: Array,
         required: true
-      }
+      },
+      activeMovieIndex: {
+        type: Number,
+        default: 0
+      },
     },
 
     data() {
@@ -140,6 +150,14 @@
     bottom: 0;
     right: 0;
     display: block;
+  }
+
+  .playing-label {
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    text-shadow: 0 0 2px black;
   }
 
   .placeholder-banner {
