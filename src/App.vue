@@ -139,7 +139,7 @@
         this.isUploading = true;
 
         axios.post(config.api.url + '/movies', data).then(response => {
-          this.movies = [...this.movies, response.data];
+          this.movies = [response.data, ...this.movies];
           this.showModal = false;
           this.isUploading = false;
         })
