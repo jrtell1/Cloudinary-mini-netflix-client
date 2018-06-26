@@ -5,7 +5,7 @@
         <div class="column is-narrow" v-for="(movie, index) in movies.slice((i - 1) * 6, i * 6)" :key="movie._id">
           <div class="banner-container" @click="$emit('choose-movie', index)" @mouseover="showPreview(index)">
             <img :src="bannerUrl(movie.banner)" :alt="movie.title" class="banner">
-            <video class="preview" autoplay muted loop :src="previewUrl(movie.trailer)" v-if="currentPreviewIndex === index"></video>
+            <video class="preview" autoplay muted loop :src="previewUrl(movie.trailer)" v-if="currentPreviewIndex === index" @mouseleave="hidePreview"></video>
           </div>
         </div>
       </div>
@@ -50,6 +50,10 @@
     methods: {
       showPreview(index) {
         this.currentPreviewIndex = index;
+      },
+
+      hidePreview() {
+        this.currentPreviewIndex = null;
       },
 
       /**
