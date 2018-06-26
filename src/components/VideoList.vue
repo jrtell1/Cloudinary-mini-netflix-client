@@ -80,6 +80,7 @@
   .banner-container {
     position: relative;
     transition: transform 200ms;
+    border: 1px solid #404040;
 
     &:hover {
       cursor: pointer;
@@ -88,6 +89,7 @@
   }
 
   .banner {
+    display: block;
     max-width: 200px;
     height: auto;
     user-drag: none;
@@ -117,6 +119,7 @@
     top: 0;
     bottom: 0;
     right: 0;
+    display: block;
   }
 
   .placeholder-banner {
