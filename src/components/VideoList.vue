@@ -19,7 +19,7 @@
               :src="previewUrl(movie.trailer)"
               @mouseleave="hidePreview"
             ></video>
-            <span v-if="activeMovieIndex === index" class="playing-label">Playing</span>
+            <span v-if="activeMovieIndex === index" class="playing-label is-size-4">Playing</span>
           </div>
         </div>
       </div>
@@ -153,11 +153,13 @@
   }
 
   .playing-label {
-    padding: 10px;
+    padding: 5px 10px;
     bottom: 0;
     left: 0;
     position: absolute;
     text-shadow: 0 0 2px black;
+    background: rgba(139, 0, 0, 0.5);
+    width: 100%;
   }
 
   .placeholder-banner {
