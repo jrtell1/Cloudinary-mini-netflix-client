@@ -103,8 +103,14 @@
     },
 
     computed: {
-      activeMovieTitle() {  
+      activeMovieTitle() {
         return this.movies[this.activeMovie] ? this.movies[this.activeMovie].title : null;
+      }
+    },
+
+    watch: {
+      activeMovieTitle(newValue) {
+        document.title = 'Netflix | playing ' + newValue;
       }
     },
 
