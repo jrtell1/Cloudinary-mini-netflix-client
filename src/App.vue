@@ -51,6 +51,7 @@
       :cloudinary-instance="cloudinaryInstance"
       :movies="movies"
       :active-movie-index="activeMovie"
+      :active-movie-title="activeMovieTitle"
       @choose-movie="updatePlayer"
     ></video-player>
 
@@ -99,6 +100,12 @@
         activeMovie: 0,
         showModal: false,
         isUploading: false
+      }
+    },
+
+    computed: {
+      activeMovieTitle() {  
+        return this.movies[this.activeMovie] ? this.movies[this.activeMovie].title : null;
       }
     },
 
