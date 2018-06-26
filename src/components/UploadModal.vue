@@ -230,6 +230,9 @@
 
         if (this.isAllStepsValid) {
           this.$emit('handle-upload', data);
+          this.title = '';
+          this.banner = null;
+          this.trailer = null;
         }
       },
 
