@@ -1,8 +1,8 @@
 <template>
   <div class="video-list-container">
     <div class="video-list">
-      <div class="columns is-mobile" v-for="i in Math.ceil(movies.length / 6)" :key="i">
-        <div class="column is-narrow" v-for="(movie, index) in movies.slice((i - 1) * 6, i * 6)" :key="movie._id">
+      <div class="columns is-mobile">
+        <div class="column is-narrow" v-for="(movie, index) in movies" :key="movie._id">
           <div
             class="banner-container"
             :class="{ 'is-active': activeMovieIndex === index }"
