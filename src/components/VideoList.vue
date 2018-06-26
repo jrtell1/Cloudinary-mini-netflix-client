@@ -48,10 +48,16 @@
     },
 
     methods: {
+      /**
+       * Shows preview for the given index.
+       */
       showPreview(index) {
         this.currentPreviewIndex = index;
       },
 
+      /**
+       * Sets preview to null.
+       */
       hidePreview() {
         this.currentPreviewIndex = null;
       },
@@ -66,6 +72,12 @@
         return this.cloudinaryInstance.url(bannerName, baseTransformations);
       },
 
+      /**
+       * Generates a Cloudinary url for the given preview video.
+       *
+       * @param {String} trailerName
+       * @returns {string}
+       */
       previewUrl(trailerName) {
         return this.cloudinaryInstance.video_url(trailerName, {
           ...baseTransformations,
