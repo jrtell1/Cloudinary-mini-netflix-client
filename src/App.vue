@@ -51,7 +51,6 @@
       :cloudinary-instance="cloudinaryInstance"
       :movies="movies"
       :active-movie-index="activeMovie"
-      :active-movie-title="activeMovieTitle"
       @choose-movie="updatePlayer"
     ></video-player>
 

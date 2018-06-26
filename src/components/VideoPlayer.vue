@@ -23,11 +23,6 @@
       activeMovieIndex: {
         type: Number,
         default: 0
-      },
-      activeMovieTitle: {
-        type: String,
-        required: false,
-        default: ''
       }
     },
 
@@ -60,10 +55,7 @@
           crop: 'crop',
           height: 500,
           aspect_ratio: '16:9',
-          x: 100,
-          y: 100,
           gravity: 'center',
-          overlay: 'text:helvetica_60:' + this.activeMovieTitle + ',g_west,x_80,so_0,eo_15,co_rgb:ffffff80,b_black'
         }
       });
 
