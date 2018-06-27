@@ -99,7 +99,8 @@
       previewUrl(trailerName) {
         return this.cloudinaryInstance.video_url(trailerName, {
           ...baseTransformations,
-          duration: 7
+          duration: 7,
+          audioCodec: 'none',
         });
       }
     }
