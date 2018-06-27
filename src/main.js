@@ -7,7 +7,6 @@ require('cloudinary-video-player');
 window.cloudinary = require('cloudinary-core');
 
 Vue.config.productionTip = false;
-Vue.config.performance = true; // TODO: Remove before production
 
 const SocialSharing = require('vue-social-sharing');
 
