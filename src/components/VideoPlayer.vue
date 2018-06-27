@@ -100,6 +100,7 @@
 
 <style>
   .player-bg {
+    height: 500px;
     position: relative;
   }
 
